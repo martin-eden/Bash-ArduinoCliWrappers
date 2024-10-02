@@ -84,14 +84,22 @@ This is very typical and there is only one real way to do this:
 
     Defaults are `/dev/ttyUSB0` and `57600` baud.
 
+  So to execute full chain to second Arduino on `/dev/ttyUSB1` working
+  on `115200` baud, call
+
+  ```
+  ino 1 115200
+  ```
+
 
 ## Base library
 
-All `arduino-cli`-related functionality is located in `acli_wrappers.sh`.
-Those ino's are just callers and parameter jugglers.
+All `arduino-cli`-related functionality is located in
+[`acli_wrappers.sh`](acli_wrappers.sh). Those ino's are
+just callers and parameter jugglers.
 
-I encourage you to change implementation. Not design (I think design
-is okay).
+I encourage you to change implementation. Not design
+(I think design is okay).
 
 Your stock Arduino firmware not compiles because of `-Werror`?
 Remove it! Using 115200 or 9600 by default? Change defaults!
@@ -105,10 +113,14 @@ for external callers. `lora` sounds neat for Esplora btw.
 
 ## Where to install?
 
-I'm using `~/bin` (`bin` directory in home directory) for my scripts.
+I'm using `~/bin` for my scripts.
 Typical location is `/usr/local/bin` tho.
 
 
 ## See also
 
-* [My other repositories](https://github.com/martin-eden/contents)
+* [My other embedded stuff][embedded]
+* [My other repositories][repos]
+
+[embedded]: https://github.com/martin-eden/Embedded_Crafts
+[repos]: https://github.com/martin-eden/contents
