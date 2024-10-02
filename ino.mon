@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Start serial monitor of /dev/ttyUSB0 with <Baud>
+
+# Author: Martin Eden
+# Last mod.: 2024-09-25
+
+source acli_wrappers.sh
+
+# Port index is the first arg or 0
+port_index=${1:-0}
+
+# Get port name
+port_name=$(get_port_name $port_index)
+
+# Speed is the second arg or empty
+speed=$2
+
+start_monitor $port_name $speed
+
+result=$?
+
+if [ $result -ne 0 ]; then
+  printf '%s\n' "Serial monitor failed."
+fi
+
+exit $result
+
+# 2024-09-25

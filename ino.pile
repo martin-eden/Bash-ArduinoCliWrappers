@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Compile Arduino Uno sketch in current directory
+
+# Author: Martin Eden
+# Last mod.: 2024-09-25
+
+source acli_wrappers.sh
+
+uno_compile
+
+result=$?
+
+if [ $result -ne 0 ]; then
+  printf '%s\n' "Compilation failed."
+fi
+
+exit $result
+
+# 2024-09-25
