@@ -10,7 +10,7 @@ for Arduino Uno connected through USB.
 
 *Scenario*. I've just made changes to sketch and want to compile it.
 Then (if it is compiled) upload to `/dev/ttyUSB0`. Then start serial
-monitor for that port at `57600` baud.
+monitor for that port at `115200` baud.
 
 This is very typical and there is only one real way to do this:
 
@@ -39,7 +39,7 @@ This is very typical and there is only one real way to do this:
   ```
   arduino-cli compile --fqbn arduino:avr:uno .
   arduino-cli upload --fqbn arduino:avr:uno --port /dev/ttyUSB0
-  arduino-cli monitor --port /dev/ttyUSB0 --config baudrate=57600
+  arduino-cli monitor --port /dev/ttyUSB0 --config baudrate=115200
   ```
 
   Clean command interface, I've used is for several years.
@@ -77,18 +77,18 @@ This is very typical and there is only one real way to do this:
   * Monitor
 
     ```
-    ino.mon 1 115200
+    ino.mon 1 9600
     ```
 
-    Serial monitor for `/dev/ttyUSB1` at `115200` baud.
+    Serial monitor for `/dev/ttyUSB1` at `9600` baud.
 
-    Defaults are `/dev/ttyUSB0` and `57600` baud.
+    Defaults are `/dev/ttyUSB0` and `115200` baud.
 
   So to execute full chain to second Arduino on `/dev/ttyUSB1` working
-  on `115200` baud, call
+  on `9600` baud, call
 
   ```
-  ino 1 115200
+  ino 1 9600
   ```
 
 
@@ -102,7 +102,7 @@ I encourage you to change implementation. Not design
 (I think design is okay).
 
 Your stock Arduino firmware not compiles because of `-Werror`?
-Remove it! Using 115200 or 9600 by default? Change defaults!
+Remove it! Using 57600 or 9600 by default? Change defaults!
 
 
 ## Other boards
@@ -113,8 +113,7 @@ for external callers. `lora` sounds neat for Esplora btw.
 
 ## Where to install?
 
-I'm using `~/bin` for my scripts.
-Typical location is `/usr/local/bin` tho.
+I'm using `~/bin` for my scripts. Orthodox location is `/usr/local/bin`.
 
 
 ## See also
