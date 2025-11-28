@@ -3,7 +3,7 @@
 # Wrapped Arduino CLI commands
 
 # Author: Martin Eden
-# Last mod.: 2025-09-19
+# Last mod.: 2025-11-28
 
 #
 # Return arduino-cli board name for Arduino Uno
@@ -50,6 +50,8 @@ uno_compile() {
     --warnings all \
     --build-property \
       compiler.cpp.extra_flags="-std=c++1z" \
+  | \
+  sed '/Used library/,//d'
       # compiler.cpp.extra_flags="-std=c++1z -O1" \
       # compiler.cpp.extra_flags="-std=c++1z -Os" \
       # compiler.cpp.extra_flags="-std=c++1z -Werror" \
@@ -113,3 +115,4 @@ start_monitor() {
 
 # 2024-09-25
 # 2025-09-19 Styling
+# 2025-11-28 Dropping useless compile output
