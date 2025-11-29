@@ -3,7 +3,7 @@
 # Wrapped Arduino CLI commands
 
 # Author: Martin Eden
-# Last mod.: 2025-11-28
+# Last mod.: 2025-11-29
 
 #
 # Return arduino-cli board name for Arduino Uno
@@ -41,22 +41,30 @@ get_port_name() {
 uno_compile() {
   local board_name=$(get_uno_board_name)
 
-  arduino-cli \
-    compile \
-    . \
-    --fqbn $board_name \
-    --clean \
-    --quiet \
-    --warnings all \
-    --build-property \
-      compiler.cpp.extra_flags="-std=c++1z" \
-  | \
-  sed '/Used library/,//d'
-      # compiler.cpp.extra_flags="-std=c++1z -O1" \
-      # compiler.cpp.extra_flags="-std=c++1z -Os" \
-      # compiler.cpp.extra_flags="-std=c++1z -Werror" \
+  local output=$( \
+    arduino-cli \
+      compile \
+      . \
+      --fqbn $board_name \
+      --clean \
+      --quiet \
+      --warnings all \
+      --build-property \
+        compiler.cpp.extra_flags="-std=c++1z" \
+        # compiler.cpp.extra_flags="-std=c++1z -O1" \
+        # compiler.cpp.extra_flags="-std=c++1z -Os" \
+        # compiler.cpp.extra_flags="-std=c++1z -Werror" \
+    )
 
   local result=$?
+
+  # Additionally, we filter the list of used libraries from
+  # "arduino-cli compile" output. Coincidentally we cut tail lines
+  # with platform name.
+
+  output=$( echo "$output" | sed '/Used library/,$d' )
+
+  echo "$output"
 
   return $result
 }
