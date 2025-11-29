@@ -41,19 +41,20 @@ get_port_name() {
 uno_compile() {
   local board_name=$(get_uno_board_name)
 
-  local output=$( \
-    arduino-cli \
-      compile \
-      . \
-      --fqbn $board_name \
-      --clean \
-      --quiet \
-      --warnings all \
-      --build-property \
-        compiler.cpp.extra_flags="-std=c++1z" \
-        # compiler.cpp.extra_flags="-std=c++1z -O1" \
-        # compiler.cpp.extra_flags="-std=c++1z -Os" \
-        # compiler.cpp.extra_flags="-std=c++1z -Werror" \
+  local output
+  output=$( \
+      arduino-cli \
+        compile \
+        . \
+        --fqbn "$board_name" \
+        --clean \
+        --quiet \
+        --warnings all \
+        --build-property \
+          compiler.cpp.extra_flags="-std=c++1z" \
+          # compiler.cpp.extra_flags="-std=c++1z -O1" \
+          # compiler.cpp.extra_flags="-std=c++1z -Os" \
+          # compiler.cpp.extra_flags="-std=c++1z -Werror" \
     )
 
   local result=$?
