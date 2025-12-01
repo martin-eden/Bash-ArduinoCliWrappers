@@ -43,6 +43,7 @@ uno_compile() {
 
   local additional_compiler_flags=""
   additional_compiler_flags+=" -std=c++1z"
+  additional_compiler_flags+=" -Wno-empty-body"
   # additional_compiler_flags+=" -O1"
   # additional_compiler_flags+=" -Os"
   # additional_compiler_flags+=" -Werror"
