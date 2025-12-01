@@ -3,7 +3,7 @@
 # Wrapped Arduino CLI commands
 
 # Author: Martin Eden
-# Last mod.: 2025-11-29
+# Last mod.: 2025-12-01
 
 #
 # Return arduino-cli board name for Arduino Uno
@@ -46,7 +46,7 @@ uno_compile() {
       arduino-cli \
         compile \
         . \
-        --fqbn "$board_name" \
+        --fqbn $board_name \
         --clean \
         --quiet \
         --warnings all \
